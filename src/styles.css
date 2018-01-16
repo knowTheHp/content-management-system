@@ -1,0 +1,10 @@
+nav.admin {
+  position: fixed;
+  width: 150px;
+}
+
+nav.admin li {
+  float: none;
+}
+
+nav.space {}

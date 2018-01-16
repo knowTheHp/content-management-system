@@ -1,0 +1,43 @@
+<div class="h1">Register</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <form #f="ngForm" (ngSubmit)="register(f)">
+        <div class="form-group">
+          <label for="Username" class="col-form-label">Username</label>
+
+          <input type="text" class="form-control" name="username" placeholder="Username" minlength="2" [(ngModel)]="userName" #uname="ngModel"
+            required>
+        </div>
+        <div class="text-danger" *ngIf="uname.errors?.required && uname.touched">
+          Username is required.
+        </div>
+        <div class="text-danger" *ngIf="uname.errors?.minlength && uname.touched">
+          Username must have atleast 2 characters.
+        </div>
+        <div class="text-danger" *ngIf="userExists">
+          Username already exists, please choose another.
+        </div>
+
+        <div class="form-group">
+          <label for="Password" class="col-form-label">Password</label>
+          <input type="password" placeholder="password" class="form-control" name="password" [(ngModel)]="userPassword" minlength="8"
+            #pass="ngModel" required>
+        </div>
+
+        <div class="text-danger" *ngIf="pass.errors?.required && pass.touched">
+          Password field is required.
+        </div>
+
+        <div class="text-danger" *ngIf="pass.errors?.minlength && pass.touched">
+          Password sould be minimum of 8 characters.
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" [disabled]="!f.valid">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

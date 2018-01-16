@@ -1,0 +1,30 @@
+<div class="text-success" *ngIf="successMessage">
+  <p>page Deleted</p>
+</div>
+
+
+<div class="text-danger" *ngIf="errorMessage">
+  <p>Error deleting page.</p>
+</div>
+
+<h1>Pages</h1>
+<br>
+<br>
+
+<table class="table">
+  <tr class="bg-secondary">
+    <th>Title</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <tr *ngFor="let page of pages.value">
+    <td>{{page.title}}</td>
+    <td>
+      <a routerLink="/admin/edit-page/{{page._id}}">Edit</a>
+    </td>
+    <td *ngIf="page.slug != 'home'">
+      <a (click)="deletePage(page._id)" routerLink="/admin/pages">Delete</a>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,37 @@
+<div class="alert-success" *ngIf="successMessage">
+  <p>page added</p>
+</div>
+
+
+<div class="alert-success" *ngIf="errorMessage">
+  <p>page title exists, choose another.</p>
+</div>
+
+
+<h1>Add a page</h1>
+
+
+<form #page="ngForm" (submit)="addPage(page)">
+  <div class="form-group">
+    <label for="title" class="col-form-label">Title</label>
+    <input type="text" class="form-control" name="title" placeholder="title" minlength="3" [(ngModel)]="title" #pageTitle="ngModel"
+      required>
+  </div>
+
+  <div class="text-danger" *ngIf="pageTitle.errors?.required && pageTitle.touched">
+    <p>Title field is required</p>
+  </div>
+
+  <div class="text-danger" *ngIf="pageTitle.errors?.minlength && pageTitle.touched">
+    <p>Title must be minimum of 3 characters.</p>
+  </div>
+
+  <div class="form-group">
+    <label for="content" class="col-form-label">Content</label>
+    <textarea name="content" placeholder="content" class="form-control" [(ngModel)]="pageContent" #content="ngModel" minlength="30"></textarea>
+  </div>
+
+  <div class="form-group">
+    <button class="form-control" class="btn btn-primary" [disabled]="!page.valid">Add</button>
+  </div>
+</form>
